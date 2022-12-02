@@ -1,12 +1,11 @@
-var express = require('express');
-var app = express();
-//const port = 4000
+const app = require('./app')
+const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+dotenv.config({path:'./API/config/config.env'})
+PORT = process.env.PORT
 
-// répond par "hello world" lorsqu'une requête GET est faite à la page d'accueil
-app.get('/', function(req, res)=> {
-  console.log('hello world');
-});
+//  connection
+const DB = process.env.db_con
+mongoose.connect(DB, ()=> console.log('Database connected'))
 
-app.listen(4000);
-console.log("attente des requetes au port");
-//app.listen(port, () => { console.log(`Example app listening on port ${port}`) });
+app.listen(PORT,()=> console.log(`server is running on ${PORT}`))
