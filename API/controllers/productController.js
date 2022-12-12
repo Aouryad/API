@@ -1,7 +1,5 @@
-const {response}=require('../app')
-const app = require('../app')
 
-let Product = require('../models/UserModel')
+let Product = require('../models/productModel')
 exports.getAllProducts = async (req,res)=>{
 // data from db
     const produits = await Product.find()
@@ -12,7 +10,7 @@ exports.getAllProducts = async (req,res)=>{
     })
 }
 
-//--------------------------------
+//------------ajout--------------------
 exports.addProduct = async (req, res) => {
     const produit = new Product(req.body)
     await produit.save()
@@ -21,10 +19,10 @@ exports.addProduct = async (req, res) => {
         produit
     })
 }
-//----------un produit------------
-exports.getProductById =async (req, res, next) => {
+//----------voir produit------------
+exports.getProductById = async (req, res, next) => {
  
-    const produit =await Product.findOne({
+    const produit = await Product.findOne({
         _id :req.params.idProd
     })
     // requete vers db
@@ -35,10 +33,15 @@ exports.getProductById =async (req, res, next) => {
 
 }
 //-----------modification de produit
-// exports.updateProduct = async (req, res)=>{
-//    const update_prod = await Product.updateOne(
-//     {_id: req.params.idprod},
-    
-//    ) 
-// }
-
+ exports.updateProduct = async (req, res)=>{
+  const update_prod = await Product.updateOne(
+     {_id: req.params.idprod},
+     {
+        $set:req.body
+     }
+    ) 
+    res.status(200).json({
+        success:true,
+        update_prod
+    })
+ }

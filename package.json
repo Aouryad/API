@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node API/server.js",
-    "watch": "nodemon API/server.js"
+    "start": "node API/app.js",
+    "watch": "nodemon API/app.js"
   },
   "repository": {
     "type": "git",

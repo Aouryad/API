@@ -11,7 +11,7 @@ price:{
     type:Number,
     required: true
     },
-// /"User_id":{
+//"User_id":{
 //         type:String,
 //         required: true,
 //         trim: true
@@ -19,4 +19,5 @@ price:{
 }     
 );
 
-module.exports = mongoose.model('Product', productSchema) 
+module.exports = mongoose.model('product', productSchema) 
+
